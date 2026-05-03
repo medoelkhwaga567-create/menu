@@ -1,35 +1,41 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial;
-            background-color: #111;
-            text-align: center;
-        }
+<style>
+    body {
+        margin: 0;
+        background: #111;
+        font-family: Arial;
+    }
 
-        img {
-            width: 100%;
-            max-width: 800px;
-            margin: 10px auto;
-            display: block;
-            border-radius: 10px;
-        }
-    </style>
+    .container {
+        max-width: 500px;
+        margin: auto;
+        padding: 10px;
+    }
+
+    .menu-img {
+        width: 100%;
+        border-radius: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+</style>
 </head>
 
 <body>
 
-    <img src="1.jpg">
-    <img src="2.jpg">
-    <img src="3.jpg">
-    <img src="4.jpg">
-    <img src="5.jpg">
+<div class="container">
+    <img src="1.jpg" class="menu-img">
+    <img src="2.jpg" class="menu-img">
+    <img src="3.jpg" class="menu-img">
+    <img src="4.jpg" class="menu-img">
+    <img src="5.jpg" class="menu-img">
+</div>
 
 </body>
 </html>
