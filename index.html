@@ -1,13 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar" dir="rtl">
 <head>
-    <title>Menu</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - القائمة</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-        iframe { width: 100%; height: 100%; border: none; }
+        /* إعدادات الخلفية العامة */
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            background-color: #f4ece2; /* لون بيج هادئ يناسب خلفية المنيو */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: sans-serif;
+        }
+
+        /* حاوية المنيو ليعطي شكل ورقة احترافية */
+        .menu-container {
+            width: 100%;
+            max-width: 900px; /* ليظهر بشكل جيد على الشاشات الكبيرة */
+            height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2); /* ظل خفيف حول المنيو */
+            background-color: white;
+        }
+
+        iframe { 
+            width: 100%; 
+            height: 100%; 
+            border: none; 
+        }
+
+        /* زر بسيط للتحميل في حال لم يعمل الـ PDF عند البعض */
+        .download-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #5d4037; /* لون بني غامق */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 14px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            z-index: 100;
+        }
     </style>
 </head>
 <body>
-    <iframe src="menu.pdf"></iframe>
+
+    <div class="menu-container">
+        <!-- عرض ملف الـ PDF -->
+        <iframe src="menu.pdf"></iframe>
+    </div>
+
+    <!-- رابط احتياطي لتحميل المنيو مباشرة -->
+    <a href="menu.pdf" class="download-btn" download>تحميل المنيو PDF</a>
+
 </body>
 </html>
