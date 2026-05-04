@@ -1,59 +1,65 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu - المنيو</title>
     <style>
-        body { margin: 0; padding: 0; background-color: #444; }
-        #pdf-container { width: 100%; display: flex; flex-direction: column; align-items: center; }
-        canvas { width: 100% !important; height: auto !important; margin-bottom: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-        .loading { color: white; text-align: center; margin-top: 50px; font-family: Arial; }
+        /* إعدادات الصفحة الأساسية */
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; /* خلفية داكنة لراحة العين */
+            display: flex;
+            justify-content: center;
+        }
+
+        /* حاوية الصور */
+        .menu-container {
+            width: 100%;
+            max-width: 600px; /* عرض مناسب للكمبيوتر والموبايل */
+            display: flex;
+            flex-direction: column;
+            gap: 0; /* لا توجد مسافات بين الصور لتبدو كصفحة واحدة */
+        }
+
+        /* تنسيق الصور */
+        .menu-page {
+            width: 100%;
+            height: auto;
+            display: block;
+            /* إضافة انيميشن بسيط عند ظهور الصور */
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* لمسة جمالية للكمبيوتر */
+        @media (min-width: 768px) {
+            body {
+                padding: 20px 0;
+            }
+            .menu-page {
+                border-radius: 8px;
+                margin-bottom: 15px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div id="loading" class="loading">جاري تحميل المنيو...</div>
-    <div id="pdf-container"></div>
+    <div class="menu-container">
+        <!-- الصور بناءً على الأسماء في GitHub الخاص بك -->
+        <img src="1.jpg" alt="الصفحة 1" class="menu-page">
+        <img src="2.jpg" alt="الصفحة 2" class="menu-page">
+        <img src="3.jpg" alt="الصفحة 3" class="menu-page">
+        <img src="4.jpg" alt="الصفحة 4" class="menu-page">
+        <img src="5.jpg" alt="الصفحة 5" class="menu-page">
+    </div>
 
-    <!-- تحميل مكتبة PDF.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-
-    <script>
-        // اسم ملف المنيو الخاص بك هنا
-        const url = 'menu.pdf'; 
-
-        const pdfjsLib = window['pdfjs-dist/build/pdf'];
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-
-        const container = document.getElementById('pdf-container');
-        const loadingTask = pdfjsLib.getDocument(url);
-
-        loadingTask.promise.then(pdf => {
-            document.getElementById('loading').style.display = 'none';
-            
-            // عرض كل صفحات المنيو (صفحة تلو الأخرى)
-            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-                pdf.getPage(pageNum).then(page => {
-                    const viewport = page.getViewport({ scale: 2 }); // جودة عالية
-                    const canvas = document.createElement('canvas');
-                    const context = canvas.getContext('2d');
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
-
-                    const renderContext = {
-                        canvasContext: context,
-                        viewport: viewport
-                    };
-                    
-                    container.appendChild(canvas);
-                    page.render(renderContext);
-                });
-            }
-        }).catch(err => {
-            console.error(err);
-            document.getElementById('loading').innerHTML = "حدث خطأ في تحميل الملف. تأكد من وجود ملف menu.pdf في نفس المجلد.";
-        });
-    </script>
 </body>
 </html>
